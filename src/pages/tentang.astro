@@ -23,7 +23,7 @@ import { benefits, seo, whyChooseUs } from "../data/site";
         <ResponsiveImage
           src="/images/hero-gorden.png"
           alt="Gorden custom untuk interior rumah dan villa di Bali"
-          class="aspect-[4/3] w-full rounded-xl object-cover"
+          class="aspect-[4/3] w-full object-cover"
           width="900"
           height="675"
           loading="eager"
@@ -44,7 +44,7 @@ import { benefits, seo, whyChooseUs } from "../data/site";
             benefits.map((item) => (
               <article class="soft-card p-6">
                 <h3 class="card-title">{item.title}</h3>
-                <p class="mt-3 text-[15px] leading-relaxed text-neutral-600">{item.description}</p>
+                <p class="mt-3 text-[15px] leading-relaxed text-charcoal">{item.description}</p>
               </article>
             ))
           }
@@ -62,8 +62,12 @@ import { benefits, seo, whyChooseUs } from "../data/site";
         <ul class="grid gap-3">
           {
             whyChooseUs.map((item) => (
-              <li class="soft-card flex items-start gap-3 p-5 text-[15px] font-semibold leading-relaxed text-neutral-700">
-                <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-warm-500" aria-hidden="true"></span>
+              <li class="soft-card flex items-start gap-3 p-5 text-[15px] font-medium leading-relaxed text-charcoal">
+                <span class="check-icon" aria-hidden="true">
+                  <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 6l3 3 5-5" />
+                  </svg>
+                </span>
                 {item}
               </li>
             ))

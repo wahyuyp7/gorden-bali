@@ -3,24 +3,38 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
-        serif: ["Georgia", "ui-serif", "serif"],
+        sans: ["Raleway", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+        display: ["Raleway", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       colors: {
+        onyx: "#151515",
+        charcoal: "#444444",
+        sand: "#F9F8F6",
+        gold: {
+          DEFAULT: "#FFC451",
+          dark: "#e6ad3a",
+        },
+        border: {
+          soft: "#d3c4af",
+        },
         cream: {
-          50: "#fcfaf6",
-          100: "#f7f1e7",
-          200: "#eadfce",
+          50: "#F9F8F6",
+          100: "#f3f0eb",
+          200: "#e8e2d8",
         },
         warm: {
           500: "#b89068",
           700: "#765840",
-          900: "#2f2924",
+          900: "#151515",
         },
-        whatsapp: "#22c55e",
+        whatsapp: "#25D366",
+      },
+      letterSpacing: {
+        editorial: "0.2em",
       },
       boxShadow: {
-        soft: "0 18px 45px rgb(47 41 36 / 0.10)",
+        soft: "0 12px 40px rgb(21 21 21 / 0.06)",
+        card: "0 1px 3px rgb(21 21 21 / 0.04)",
       },
     },
   },

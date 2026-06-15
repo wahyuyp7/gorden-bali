@@ -19,20 +19,26 @@ const showWa = Boolean(waLabel || waMessage);
 
 <section
   class:list={[
-    isDark ? "bg-warm-900 text-white" : "border-b border-stone-200/70 bg-gradient-to-b from-cream-100 to-cream-50",
-    "py-12 md:py-16",
+    isDark ? "bg-onyx text-white" : "border-b border-border-soft/30 bg-sand",
+    "py-14 md:py-20 lg:py-24",
     className,
   ]}
 >
   <div class:list={["container-site", !isSplit && "max-w-4xl"]}>
     {
       isSplit ? (
-        <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <div class="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
-            {eyebrow && <p class={isDark ? "mb-3 text-xs font-bold uppercase tracking-[0.18em] text-cream-200" : "eyebrow"}>{eyebrow}</p>}
+            {eyebrow && (
+              <p class={isDark ? "mb-4 text-[11px] font-bold uppercase tracking-editorial text-gold" : "eyebrow"}>
+                {eyebrow}
+              </p>
+            )}
             <h1 class:list={["page-title", isDark && "text-white"]}>{title}</h1>
-            {description && <p class:list={["page-lead", isDark && "max-w-none text-cream-100/90"]}>{description}</p>}
-            {showWa && <WhatsAppButton label={waLabel ?? "Konsultasi via WhatsApp"} message={waMessage} class="mt-8" />}
+            {description && <p class:list={["page-lead", isDark && "max-w-none text-white/75"]}>{description}</p>}
+            {showWa && (
+              <WhatsAppButton label={waLabel ?? "Konsultasi via WhatsApp"} message={waMessage} variant="gold" class="mt-8" />
+            )}
             <slot name="actions" />
           </div>
           <div>
@@ -41,10 +47,16 @@ const showWa = Boolean(waLabel || waMessage);
         </div>
       ) : (
         <>
-          {eyebrow && <p class={isDark ? "mb-3 text-xs font-bold uppercase tracking-[0.18em] text-cream-200" : "eyebrow"}>{eyebrow}</p>}
+          {eyebrow && (
+            <p class={isDark ? "mb-4 text-[11px] font-bold uppercase tracking-editorial text-gold" : "eyebrow"}>
+              {eyebrow}
+            </p>
+          )}
           <h1 class:list={["page-title", isDark && "text-white"]}>{title}</h1>
-          {description && <p class:list={["page-lead", isDark && "text-cream-100/90"]}>{description}</p>}
-          {showWa && <WhatsAppButton label={waLabel ?? "Konsultasi via WhatsApp"} message={waMessage} class="mt-8" />}
+          {description && <p class:list={["page-lead", isDark && "text-white/75"]}>{description}</p>}
+          {showWa && (
+            <WhatsAppButton label={waLabel ?? "Konsultasi via WhatsApp"} message={waMessage} variant="gold" class="mt-8" />
+          )}
           <slot name="actions" />
         </>
       )

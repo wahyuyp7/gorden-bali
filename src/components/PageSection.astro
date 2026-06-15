@@ -7,9 +7,11 @@ const {
 
 const bgMap = {
   white: "bg-white",
-  cream: "bg-cream-50",
+  cream: "bg-sand",
   "cream-100": "bg-cream-100",
-  dark: "bg-warm-900 text-white",
+  sand: "bg-sand",
+  dark: "bg-onyx text-white",
+  onyx: "bg-onyx text-white",
 };
 ---
 
@@ -17,7 +19,7 @@ const bgMap = {
   class:list={[
     "section-space",
     bgMap[bg] ?? bgMap.white,
-    border && "border-b border-stone-200/50",
+    border && "border-b border-border-soft/30",
     className,
   ]}
 >

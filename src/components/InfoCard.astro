@@ -2,9 +2,9 @@
 const { title, class: className = "" } = Astro.props;
 ---
 
-<article class:list={["soft-card p-6", className]}>
+<article class:list={["soft-card p-6 md:p-7", className]}>
   <h2 class="card-title">{title}</h2>
-  <div class="mt-3 text-sm leading-relaxed text-neutral-600">
+  <div class="mt-3 text-sm leading-relaxed text-charcoal">
     <slot />
   </div>
 </article>

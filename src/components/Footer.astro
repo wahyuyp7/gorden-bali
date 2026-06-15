@@ -3,39 +3,34 @@ import WhatsAppButton from "./WhatsAppButton.astro";
 import { footerDescription, footerServices, navItems, site, whatsappLink } from "../data/site";
 
 const linkClass =
-  "inline-block py-1 text-[15px] leading-relaxed text-neutral-600 transition hover:text-warm-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-500";
-const headingClass = "text-sm font-bold uppercase tracking-[0.12em] text-warm-700";
+  "inline-block py-1.5 text-[15px] leading-relaxed text-charcoal transition hover:text-onyx focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";
+const headingClass = "text-[11px] font-bold uppercase tracking-editorial text-gold";
 ---
 
-<footer class="border-t border-stone-200 bg-cream-50 pb-24 pt-12 sm:pb-12">
+<footer class="border-t border-border-soft/40 bg-sand pb-24 pt-14 sm:pb-14">
   <div class="container-site">
-    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-      <!-- Brand -->
+    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
       <div class="sm:col-span-2 lg:col-span-1">
         <a href="/" class="inline-flex items-center gap-3" aria-label={`${site.name} - halaman utama`}>
           <img
             src="/images/logo.png"
             alt={site.name}
-            class="h-10 w-10 shrink-0 rounded-md object-contain"
+            class="h-10 w-10 shrink-0 object-contain"
             width="40"
             height="40"
             loading="lazy"
           />
-          <span class="font-serif text-xl font-bold text-warm-900">{site.name}</span>
+          <span class="font-display text-lg font-bold text-onyx">{site.name}</span>
         </a>
-        <p class="mt-4 max-w-sm text-[15px] leading-relaxed text-neutral-600">
+        <p class="mt-5 max-w-sm text-[15px] leading-relaxed text-charcoal">
           {footerDescription}
         </p>
-        <p class="mt-4 text-sm leading-relaxed text-neutral-600">
-          Konsultasi kebutuhan gorden Anda via WhatsApp.
-        </p>
-        <WhatsAppButton class="mt-5" label="Chat WhatsApp" />
+        <WhatsAppButton variant="gold" class="mt-6" label="Chat WhatsApp" />
       </div>
 
-      <!-- Navigasi -->
       <nav aria-label="Navigasi footer">
         <p class={headingClass}>Halaman</p>
-        <ul class="mt-4 space-y-1">
+        <ul class="mt-5 space-y-1">
           {
             navItems.map((item) => (
               <li>
@@ -48,10 +43,9 @@ const headingClass = "text-sm font-bold uppercase tracking-[0.12em] text-warm-70
         </ul>
       </nav>
 
-      <!-- Layanan -->
       <nav aria-label="Layanan gorden">
         <p class={headingClass}>Layanan</p>
-        <ul class="mt-4 space-y-1">
+        <ul class="mt-5 space-y-1">
           {
             footerServices.map((service) => (
               <li>
@@ -64,15 +58,14 @@ const headingClass = "text-sm font-bold uppercase tracking-[0.12em] text-warm-70
         </ul>
       </nav>
 
-      <!-- Kontak -->
       <div>
         <p class={headingClass}>Kontak</p>
-        <ul class="mt-4 space-y-3 text-[15px] leading-relaxed text-neutral-600">
+        <ul class="mt-5 space-y-4 text-[15px] leading-relaxed text-charcoal">
           <li>
-            <span class="block text-xs font-bold uppercase tracking-[0.1em] text-warm-700">WhatsApp</span>
+            <span class="block text-[11px] font-bold uppercase tracking-[0.12em] text-onyx">WhatsApp</span>
             <a
               href={whatsappLink()}
-              class="mt-1 inline-block font-semibold text-green-700 transition hover:text-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700"
+              class="mt-1 inline-block font-semibold text-whatsapp transition hover:text-[#1fb855] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-whatsapp"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -80,15 +73,14 @@ const headingClass = "text-sm font-bold uppercase tracking-[0.12em] text-warm-70
             </a>
           </li>
           <li>
-            <span class="block text-xs font-bold uppercase tracking-[0.1em] text-warm-700">Jam operasional</span>
+            <span class="block text-[11px] font-bold uppercase tracking-[0.12em] text-onyx">Jam operasional</span>
             <span class="mt-1 block">{site.hours}</span>
           </li>
           <li>
-            <span class="block text-xs font-bold uppercase tracking-[0.1em] text-warm-700">Instagram</span>
-            <!-- GANTI: instagramUrl di src/data/site.js jika username berubah -->
+            <span class="block text-[11px] font-bold uppercase tracking-[0.12em] text-onyx">Instagram</span>
             <a
               href={site.instagramUrl}
-              class="mt-1 inline-block font-semibold text-warm-900 transition hover:text-warm-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-500"
+              class="mt-1 inline-block font-semibold text-onyx transition hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -99,8 +91,8 @@ const headingClass = "text-sm font-bold uppercase tracking-[0.12em] text-warm-70
       </div>
     </div>
 
-    <div class="mt-10 border-t border-stone-200/80 pt-6">
-      <p class="text-center text-xs leading-relaxed text-neutral-500 sm:text-left">
+    <div class="mt-12 border-t border-border-soft/50 pt-8">
+      <p class="text-center text-xs leading-relaxed text-charcoal/70 sm:text-left">
         &copy; {new Date().getFullYear()} {site.name}. All rights reserved.
       </p>
     </div>
