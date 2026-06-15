@@ -2,34 +2,32 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CTA from "../components/CTA.astro";
 import PageHero from "../components/PageHero.astro";
+import PageSection from "../components/PageSection.astro";
+import SectionPanel from "../components/SectionPanel.astro";
 import GalleryGrid from "../components/GalleryGrid.astro";
-import SectionHeader from "../components/SectionHeader.astro";
 import { gallery, seo } from "../data/site";
 ---
 
 <BaseLayout title={seo.galeri.title} description={seo.galeri.description}>
   <main>
     <PageHero
+      tone="dark"
       eyebrow="Galeri gorden Bali"
       title="Contoh hasil pemasangan gorden untuk berbagai ruangan."
       description="Gunakan galeri ini sebagai referensi awal. Model, warna, dan bahan tetap bisa disesuaikan dengan konsep ruangan Anda."
-      tone="dark"
       waLabel="Konsultasi model & bahan"
       waMessage="Halo, saya ingin konsultasi gorden setelah melihat referensi galeri Aruma Gorden Bali."
     />
 
-    <section class="section-space bg-cream-50">
-      <div class="container-site">
-        <SectionHeader
-          eyebrow="Hasil pekerjaan"
-          title="Referensi untuk rumah, villa, kantor, hotel, dan apartemen."
-          description="Beberapa contoh tampilan gorden dan blind yang bisa disesuaikan dengan ukuran, warna, bahan, dan karakter ruangan."
-        />
-        <div class="mt-10">
-          <GalleryGrid items={gallery} />
-        </div>
-      </div>
-    </section>
+    <PageSection bg="cream">
+      <SectionPanel
+        eyebrow="Hasil pekerjaan"
+        title="Referensi untuk rumah, villa, kantor, hotel, dan apartemen."
+        description="Beberapa contoh tampilan gorden dan blind yang bisa disesuaikan dengan ukuran, warna, bahan, dan karakter ruangan."
+      >
+        <GalleryGrid items={gallery} />
+      </SectionPanel>
+    </PageSection>
 
     <CTA
       title="Punya referensi tampilan yang Anda suka?"

@@ -2,7 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import Benefits from "../components/Benefits.astro";
-import SectionHeader from "../components/SectionHeader.astro";
+import PageSection from "../components/PageSection.astro";
+import SectionPanel from "../components/SectionPanel.astro";
 import ServicesGrid from "../components/ServicesGrid.astro";
 import GalleryGrid from "../components/GalleryGrid.astro";
 import ServiceAreaList from "../components/ServiceAreaList.astro";
@@ -10,6 +11,7 @@ import ProcessSteps from "../components/ProcessSteps.astro";
 import FAQ from "../components/FAQ.astro";
 import CTA from "../components/CTA.astro";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 import { gallery, seo, serviceAreas, services } from "../data/site";
 ---
 
@@ -18,41 +20,34 @@ import { gallery, seo, serviceAreas, services } from "../data/site";
     <Hero />
     <Benefits />
 
-    <section class="section-space bg-cream-50">
-      <div class="container-site">
-        <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <SectionHeader
-            eyebrow="Jenis layanan populer"
-            title="Pilihan gorden dan blind untuk berbagai kebutuhan."
-            description="Setiap produk bisa disesuaikan ukuran, warna, bahan, dan cara pemasangan."
-          />
-          <a href="/layanan" class="btn-outline shrink-0">Lihat semua layanan</a>
-        </div>
-        <div class="mt-10">
-          <ServicesGrid items={services.slice(0, 6)} showImages />
-        </div>
-      </div>
-    </section>
+    <PageSection bg="cream">
+      <SectionPanel
+        eyebrow="Jenis layanan populer"
+        title="Pilihan gorden dan blind untuk berbagai kebutuhan."
+        description="Setiap produk bisa disesuaikan ukuran, warna, bahan, dan cara pemasangan."
+        actionHref="/layanan"
+        actionLabel="Lihat semua layanan"
+      >
+        <ServicesGrid items={services.slice(0, 6)} showImages />
+      </SectionPanel>
+    </PageSection>
 
-    <section class="section-space bg-warm-900 text-white">
-      <div class="container-site">
-        <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <SectionHeader
-            eyebrow="Galeri singkat"
-            title="Referensi tampilan gorden untuk hunian dan properti di Bali."
-            description="Contoh gaya pemasangan untuk ruang tamu, kamar, villa, kantor, dan apartemen."
-            tone="dark"
-          />
-          <a href="/galeri" class="btn-wa-light shrink-0">Lihat galeri</a>
-        </div>
-        <div class="mt-10">
-          <GalleryGrid items={gallery.slice(0, 6)} dark />
-        </div>
-      </div>
-    </section>
+    <PageSection bg="dark">
+      <SectionPanel
+        eyebrow="Galeri singkat"
+        title="Referensi tampilan gorden untuk hunian dan properti di Bali."
+        description="Contoh gaya pemasangan untuk ruang tamu, kamar, villa, kantor, dan apartemen."
+        tone="dark"
+        actionHref="/galeri"
+        actionLabel="Lihat galeri"
+        actionClass="btn-wa-light shrink-0"
+      >
+        <GalleryGrid items={gallery.slice(0, 6)} dark />
+      </SectionPanel>
+    </PageSection>
 
-    <section class="section-space bg-cream-100">
-      <div class="container-site grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+    <PageSection bg="cream-100">
+      <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div>
           <SectionHeader
             eyebrow="Proses pemesanan"
@@ -63,24 +58,22 @@ import { gallery, seo, serviceAreas, services } from "../data/site";
         </div>
         <ProcessSteps />
       </div>
-    </section>
+    </PageSection>
 
-    <section class="section-space bg-white">
-      <div class="container-site">
-        <SectionHeader
-          eyebrow="Area layanan"
-          title="Melayani Denpasar, Badung, Gianyar, dan area Bali lainnya."
-          description="Survey dan pemasangan bisa dijadwalkan sesuai lokasi. Untuk area di luar daftar, chat kami untuk cek jadwal terdekat."
-          align="center"
-        />
-        <div class="mx-auto mt-9 max-w-5xl">
-          <ServiceAreaList areas={serviceAreas.slice(0, 10)} />
-        </div>
+    <PageSection bg="white">
+      <SectionPanel
+        eyebrow="Area layanan"
+        title="Melayani Denpasar, Badung, Gianyar, dan area Bali lainnya."
+        description="Survey dan pemasangan bisa dijadwalkan sesuai lokasi. Untuk area di luar daftar, chat kami untuk cek jadwal terdekat."
+        align="center"
+        contentClass="mx-auto mt-10 max-w-5xl"
+      >
+        <ServiceAreaList areas={serviceAreas.slice(0, 10)} />
         <div class="mt-8 text-center">
           <a href="/area-layanan" class="btn-outline">Lihat semua area layanan</a>
         </div>
-      </div>
-    </section>
+      </SectionPanel>
+    </PageSection>
 
     <FAQ />
     <CTA />

@@ -1,0 +1,27 @@
+---
+const {
+  bg = "white",
+  border = false,
+  class: className = "",
+} = Astro.props;
+
+const bgMap = {
+  white: "bg-white",
+  cream: "bg-cream-50",
+  "cream-100": "bg-cream-100",
+  dark: "bg-warm-900 text-white",
+};
+---
+
+<section
+  class:list={[
+    "section-space",
+    bgMap[bg] ?? bgMap.white,
+    border && "border-b border-stone-200/50",
+    className,
+  ]}
+>
+  <div class="container-site">
+    <slot />
+  </div>
+</section>

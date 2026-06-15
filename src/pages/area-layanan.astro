@@ -1,60 +1,49 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CTA from "../components/CTA.astro";
-import SectionHeader from "../components/SectionHeader.astro";
+import PageHero from "../components/PageHero.astro";
+import PageSection from "../components/PageSection.astro";
+import SectionPanel from "../components/SectionPanel.astro";
+import FeatureNote from "../components/FeatureNote.astro";
 import ServiceAreaList from "../components/ServiceAreaList.astro";
-import WhatsAppButton from "../components/WhatsAppButton.astro";
 import { seo, serviceAreas } from "../data/site";
+
+const surveyNotes = [
+  "Pengukuran jendela di lokasi",
+  "Rekomendasi model & bahan",
+  "Pemasangan rapi sesuai ukuran",
+];
 ---
 
 <BaseLayout title={seo.area.title} description={seo.area.description}>
   <main>
-    <section class="border-b border-stone-200/70 bg-gradient-to-b from-cream-100 to-cream-50 py-12 md:py-16">
-      <div class="container-site grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
-        <div>
-          <p class="eyebrow">Area layanan</p>
-          <h1 class="page-title">Jasa gorden custom untuk berbagai area di Bali.</h1>
-          <p class="page-lead">
-            Kami melayani konsultasi, pengukuran, dan pemasangan ke lokasi customer. Jadwal survey menyesuaikan area dan kebutuhan proyek.
-          </p>
-          <WhatsAppButton label="Jadwalkan pengukuran" message="Halo, saya ingin konsultasi jadwal survey gorden di lokasi saya." class="mt-8" />
-        </div>
-        <div class="soft-card p-6">
-          <p class="text-xs font-bold uppercase tracking-[0.16em] text-warm-700">Survey ke lokasi</p>
-          <p class="mt-3 text-[15px] leading-relaxed text-neutral-600">
-            Jika lokasi Anda belum ada di daftar, tetap bisa chat WhatsApp. Kami bantu cek jadwal dan kemungkinan survey ke area tersebut.
-          </p>
-          <ul class="mt-4 space-y-2 text-sm text-neutral-600">
-            <li class="flex items-start gap-2">
-              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-whatsapp" aria-hidden="true"></span>
-              Pengukuran jendela di lokasi
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-whatsapp" aria-hidden="true"></span>
-              Rekomendasi model & bahan
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-whatsapp" aria-hidden="true"></span>
-              Pemasangan rapi sesuai ukuran
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    <PageHero
+      layout="split"
+      eyebrow="Area layanan"
+      title="Jasa gorden custom untuk berbagai area di Bali."
+      description="Kami melayani konsultasi, pengukuran, dan pemasangan ke lokasi customer. Jadwal survey menyesuaikan area dan kebutuhan proyek."
+      waLabel="Jadwalkan pengukuran"
+      waMessage="Halo, saya ingin konsultasi jadwal survey gorden di lokasi saya."
+    >
+      <FeatureNote
+        slot="aside"
+        eyebrow="Survey ke lokasi"
+        description="Jika lokasi Anda belum ada di daftar, tetap bisa chat WhatsApp. Kami bantu cek jadwal dan kemungkinan survey ke area tersebut."
+        items={surveyNotes}
+      />
+    </PageHero>
 
-    <section class="section-space bg-white">
-      <div class="container-site">
-        <SectionHeader
-          eyebrow="Cakupan area"
-          title="Denpasar, Badung, Gianyar, Tabanan, dan sekitarnya."
-          description="Area layanan menyesuaikan lokasi customer — untuk rumah, villa, kantor, hotel, dan apartemen."
-          align="center"
-        />
-        <div class="mx-auto mt-10 max-w-5xl">
-          <ServiceAreaList areas={serviceAreas} />
-        </div>
-      </div>
-    </section>
+    <PageSection bg="white">
+      <SectionPanel
+        eyebrow="Cakupan area"
+        title="Denpasar, Badung, Gianyar, Tabanan, dan sekitarnya."
+        description="Area layanan menyesuaikan lokasi customer — untuk rumah, villa, kantor, hotel, dan apartemen."
+        align="center"
+        contentClass="mx-auto mt-10 max-w-5xl"
+      >
+        <ServiceAreaList areas={serviceAreas} />
+      </SectionPanel>
+    </PageSection>
 
     <CTA
       title="Ingin cek jadwal pengukuran di lokasi Anda?"

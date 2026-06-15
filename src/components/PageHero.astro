@@ -6,13 +6,15 @@ const {
   title,
   description,
   tone = "light",
-  narrow = true,
+  layout = "narrow",
   waLabel,
   waMessage,
   class: className = "",
 } = Astro.props;
 
 const isDark = tone === "dark";
+const isSplit = layout === "split";
+const showWa = Boolean(waLabel || waMessage);
 ---
 
 <section
@@ -22,11 +24,31 @@ const isDark = tone === "dark";
     className,
   ]}
 >
-  <div class:list={["container-site", narrow && "max-w-4xl"]}>
-    {eyebrow && <p class={isDark ? "mb-3 text-xs font-bold uppercase tracking-[0.18em] text-cream-200" : "eyebrow"}>{eyebrow}</p>}
-    <h1 class:list={["page-title", isDark && "text-white"]}>{title}</h1>
-    {description && <p class:list={["page-lead", isDark && "text-cream-100/90"]}>{description}</p>}
-    {waLabel && waMessage && <WhatsAppButton label={waLabel} message={waMessage} class="mt-8" />}
+  <div class:list={["container-site", !isSplit && "max-w-4xl"]}>
+    {
+      isSplit ? (
+        <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <div>
+            {eyebrow && <p class={isDark ? "mb-3 text-xs font-bold uppercase tracking-[0.18em] text-cream-200" : "eyebrow"}>{eyebrow}</p>}
+            <h1 class:list={["page-title", isDark && "text-white"]}>{title}</h1>
+            {description && <p class:list={["page-lead", isDark && "max-w-none text-cream-100/90"]}>{description}</p>}
+            {showWa && <WhatsAppButton label={waLabel ?? "Konsultasi via WhatsApp"} message={waMessage} class="mt-8" />}
+            <slot name="actions" />
+          </div>
+          <div>
+            <slot name="aside" />
+          </div>
+        </div>
+      ) : (
+        <>
+          {eyebrow && <p class={isDark ? "mb-3 text-xs font-bold uppercase tracking-[0.18em] text-cream-200" : "eyebrow"}>{eyebrow}</p>}
+          <h1 class:list={["page-title", isDark && "text-white"]}>{title}</h1>
+          {description && <p class:list={["page-lead", isDark && "text-cream-100/90"]}>{description}</p>}
+          {showWa && <WhatsAppButton label={waLabel ?? "Konsultasi via WhatsApp"} message={waMessage} class="mt-8" />}
+          <slot name="actions" />
+        </>
+      )
+    }
     <slot />
   </div>
 </section>

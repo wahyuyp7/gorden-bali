@@ -81,4 +81,16 @@
   .step-badge {
     @apply flex h-9 w-9 items-center justify-center rounded-full bg-cream-100 text-sm font-bold text-warm-900 ring-1 ring-warm-700/15;
   }
+
+  .card-title {
+    @apply font-serif text-lg font-bold leading-snug text-warm-900;
+  }
+
+  .form-input {
+    @apply mt-2 w-full rounded-lg border border-stone-200 bg-white px-4 py-3 text-sm outline-none focus:border-warm-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-500;
+  }
+
+  .form-label {
+    @apply text-sm font-bold text-warm-900;
+  }
 }

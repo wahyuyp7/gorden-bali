@@ -1,27 +1,26 @@
 ---
+import PageSection from "./PageSection.astro";
 import SectionHeader from "./SectionHeader.astro";
 import { benefits } from "../data/site";
 ---
 
-<section class="section-space border-b border-stone-200/50 bg-white">
-  <div class="container-site">
-    <SectionHeader
-      eyebrow="Keunggulan layanan"
-      title="Dibuat sesuai ukuran, gaya, dan kebutuhan ruangan Anda."
-      description="Dari rekomendasi bahan sampai pemasangan — hasil akhir rapi dan nyaman dipakai setiap hari."
-      align="center"
-    />
+<PageSection bg="white" border>
+  <SectionHeader
+    eyebrow="Keunggulan layanan"
+    title="Dibuat sesuai ukuran, gaya, dan kebutuhan ruangan Anda."
+    description="Dari rekomendasi bahan sampai pemasangan — hasil akhir rapi dan nyaman dipakai setiap hari."
+    align="center"
+  />
 
-    <div class="mx-auto mt-10 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {
-        benefits.map((item, index) => (
-          <article class="soft-card p-6">
-            <span class="step-badge">{String(index + 1).padStart(2, "0")}</span>
-            <h3 class="mt-5 text-lg font-bold leading-snug">{item.title}</h3>
-            <p class="mt-3 text-[15px] leading-relaxed text-neutral-600">{item.description}</p>
-          </article>
-        ))
-      }
-    </div>
+  <div class="mx-auto mt-10 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      benefits.map((item, index) => (
+        <article class="soft-card p-6">
+          <span class="step-badge">{String(index + 1).padStart(2, "0")}</span>
+          <h3 class="card-title mt-5">{item.title}</h3>
+          <p class="mt-3 text-[15px] leading-relaxed text-neutral-600">{item.description}</p>
+        </article>
+      ))
+    }
   </div>
-</section>
+</PageSection>

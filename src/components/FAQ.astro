@@ -1,4 +1,5 @@
 ---
+import PageSection from "./PageSection.astro";
 import SectionHeader from "./SectionHeader.astro";
 import WhatsAppButton from "./WhatsAppButton.astro";
 import { faqs } from "../data/site";
@@ -6,33 +7,31 @@ import { faqs } from "../data/site";
 const { items = faqs } = Astro.props;
 ---
 
-<section class="section-space bg-cream-50">
-  <div class="container-site">
-    <SectionHeader
-      eyebrow="FAQ"
-      title="Pertanyaan yang sering ditanyakan."
-      description="Jawaban singkat sebelum Anda lanjut konsultasi via WhatsApp."
-      align="center"
-    />
+<PageSection bg="cream">
+  <SectionHeader
+    eyebrow="FAQ"
+    title="Pertanyaan yang sering ditanyakan."
+    description="Jawaban singkat sebelum Anda lanjut konsultasi via WhatsApp."
+    align="center"
+  />
 
-    <div class="mx-auto mt-10 max-w-3xl overflow-hidden rounded-xl border border-stone-200/80 bg-white shadow-sm">
-      {
-        items.map((faq, index) => (
-          <details class:list={["group p-5", index > 0 && "border-t border-stone-200/80"]}>
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-[15px] font-bold text-warm-900 md:text-base">
-              {faq.question}
-              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cream-100 text-lg leading-none text-warm-700 transition group-open:rotate-45">
-                +
-              </span>
-            </summary>
-            <p class="mt-4 text-[15px] leading-relaxed text-neutral-600">{faq.answer}</p>
-          </details>
-        ))
-      }
-    </div>
-
-    <div class="mt-8 text-center">
-      <WhatsAppButton label="Tanya langsung" message="Halo, saya punya pertanyaan tentang jasa gorden custom di Bali." />
-    </div>
+  <div class="mx-auto mt-10 max-w-3xl overflow-hidden rounded-xl border border-stone-200/80 bg-white shadow-sm">
+    {
+      items.map((faq, index) => (
+        <details class:list={["group p-5", index > 0 && "border-t border-stone-200/80"]}>
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-[15px] font-bold text-warm-900 md:text-base">
+            {faq.question}
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cream-100 text-lg leading-none text-warm-700 transition group-open:rotate-45">
+              +
+            </span>
+          </summary>
+          <p class="mt-4 text-[15px] leading-relaxed text-neutral-600">{faq.answer}</p>
+        </details>
+      ))
+    }
   </div>
-</section>
+
+  <div class="mt-8 text-center">
+    <WhatsAppButton label="Tanya langsung" message="Halo, saya punya pertanyaan tentang jasa gorden custom di Bali." />
+  </div>
+</PageSection>

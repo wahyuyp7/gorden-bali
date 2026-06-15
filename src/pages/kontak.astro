@@ -1,9 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CTA from "../components/CTA.astro";
+import PageHero from "../components/PageHero.astro";
+import PageSection from "../components/PageSection.astro";
 import SectionHeader from "../components/SectionHeader.astro";
+import InfoCard from "../components/InfoCard.astro";
+import QuickActionPills from "../components/QuickActionPills.astro";
 import ServiceAreaList from "../components/ServiceAreaList.astro";
-import WhatsAppButton from "../components/WhatsAppButton.astro";
 import { contactNeedOptions, seo, serviceAreas, site, whatsappLink } from "../data/site";
 
 const quickActions = [
@@ -16,60 +19,34 @@ const quickActions = [
 
 <BaseLayout title={seo.kontak.title} description={seo.kontak.description}>
   <main>
-    <section class="border-b border-stone-200/70 bg-gradient-to-b from-cream-100 to-cream-50 py-12 md:py-16">
-      <div class="container-site grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-        <div>
-          <p class="eyebrow">Kontak</p>
-          <h1 class="page-title">Konsultasi gorden custom di Bali via WhatsApp.</h1>
-          <p class="page-lead">
-            Chat langsung untuk konsultasi model, tanya harga, pilih bahan, atau jadwalkan pengukuran ke lokasi.
-          </p>
-          <WhatsAppButton class="mt-8" />
-          <div class="mt-6 flex flex-wrap gap-2">
-            {
-              quickActions.map((action) => (
-                <a
-                  href={whatsappLink(action.message)}
-                  class="trust-pill text-[13px] transition hover:ring-warm-500/25"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {action.label}
-                </a>
-              ))
-            }
-          </div>
-        </div>
-
-        <div class="grid gap-4 sm:grid-cols-2">
-          <article class="soft-card p-6">
-            <h2 class="text-lg font-bold text-warm-900">WhatsApp</h2>
-            <a href={whatsappLink()} class="mt-3 block text-sm font-bold text-green-700 hover:text-green-800" target="_blank" rel="noopener noreferrer">
-              {site.phoneDisplay}
-            </a>
-          </article>
-          <article class="soft-card p-6">
-            <h2 class="text-lg font-bold text-warm-900">Instagram</h2>
-            <a href={site.instagramUrl} class="mt-3 block text-sm font-bold text-warm-900 hover:text-warm-700" target="_blank" rel="noopener noreferrer">
-              {site.instagram}
-            </a>
-          </article>
-          <article class="soft-card p-6">
-            <h2 class="text-lg font-bold text-warm-900">Jam operasional</h2>
-            <p class="mt-3 text-sm leading-relaxed text-neutral-600">{site.hours}</p>
-          </article>
-          <article class="soft-card p-6">
-            <h2 class="text-lg font-bold text-warm-900">Area layanan</h2>
-            <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-              Denpasar, Badung, Gianyar, Tabanan, Sanur, Canggu, Seminyak, Ubud, Nusa Dua, Jimbaran, dan area Bali lainnya.
-            </p>
-          </article>
-        </div>
+    <PageHero
+      layout="split"
+      eyebrow="Kontak"
+      title="Konsultasi gorden custom di Bali via WhatsApp."
+      description="Chat langsung untuk konsultasi model, tanya harga, pilih bahan, atau jadwalkan pengukuran ke lokasi."
+      waMessage="Halo, saya ingin konsultasi gorden custom di Bali."
+    >
+      <QuickActionPills slot="actions" items={quickActions} class="mt-6" />
+      <div slot="aside" class="grid gap-4 sm:grid-cols-2">
+        <InfoCard title="WhatsApp">
+          <a href={whatsappLink()} class="block text-sm font-bold text-green-700 hover:text-green-800" target="_blank" rel="noopener noreferrer">
+            {site.phoneDisplay}
+          </a>
+        </InfoCard>
+        <InfoCard title="Instagram">
+          <a href={site.instagramUrl} class="block text-sm font-bold text-warm-900 hover:text-warm-700" target="_blank" rel="noopener noreferrer">
+            {site.instagram}
+          </a>
+        </InfoCard>
+        <InfoCard title="Jam operasional">{site.hours}</InfoCard>
+        <InfoCard title="Area layanan">
+          Denpasar, Badung, Gianyar, Tabanan, Sanur, Canggu, Seminyak, Ubud, Nusa Dua, Jimbaran, dan area Bali lainnya.
+        </InfoCard>
       </div>
-    </section>
+    </PageHero>
 
-    <section class="section-space bg-white">
-      <div class="container-site grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+    <PageSection bg="white">
+      <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
         <div>
           <SectionHeader
             eyebrow="Form konsultasi"
@@ -84,46 +61,28 @@ const quickActions = [
         <form id="kontak-form" class="soft-card bg-cream-50/50 p-6 md:p-8" novalidate>
           <div class="grid gap-5 sm:grid-cols-2">
             <div class="block">
-              <label for="kontak-nama" class="text-sm font-bold text-warm-900">Nama</label>
-              <input
-                id="kontak-nama"
-                name="nama"
-                type="text"
-                autocomplete="name"
-                class="mt-2 w-full rounded-lg border border-stone-200 bg-white px-4 py-3 text-sm outline-none focus:border-warm-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-500"
-                placeholder="Nama Anda"
-              />
+              <label for="kontak-nama" class="form-label">Nama</label>
+              <input id="kontak-nama" name="nama" type="text" autocomplete="name" class="form-input" placeholder="Nama Anda" />
             </div>
             <div class="block">
-              <label for="kontak-lokasi" class="text-sm font-bold text-warm-900">Lokasi</label>
-              <input
-                id="kontak-lokasi"
-                name="lokasi"
-                type="text"
-                autocomplete="address-level2"
-                class="mt-2 w-full rounded-lg border border-stone-200 bg-white px-4 py-3 text-sm outline-none focus:border-warm-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-500"
-                placeholder="Contoh: Canggu"
-              />
+              <label for="kontak-lokasi" class="form-label">Lokasi</label>
+              <input id="kontak-lokasi" name="lokasi" type="text" autocomplete="address-level2" class="form-input" placeholder="Contoh: Canggu" />
             </div>
             <div class="block sm:col-span-2">
-              <label for="kontak-kebutuhan" class="text-sm font-bold text-warm-900">Kebutuhan</label>
-              <select
-                id="kontak-kebutuhan"
-                name="kebutuhan"
-                class="mt-2 w-full rounded-lg border border-stone-200 bg-white px-4 py-3 text-sm outline-none focus:border-warm-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-500"
-              >
+              <label for="kontak-kebutuhan" class="form-label">Kebutuhan</label>
+              <select id="kontak-kebutuhan" name="kebutuhan" class="form-input">
                 {contactNeedOptions.map((option) => (
                   <option value={option}>{option}</option>
                 ))}
               </select>
             </div>
             <div class="block sm:col-span-2">
-              <label for="kontak-pesan" class="text-sm font-bold text-warm-900">Pesan</label>
+              <label for="kontak-pesan" class="form-label">Pesan</label>
               <textarea
                 id="kontak-pesan"
                 name="pesan"
                 rows="5"
-                class="mt-2 w-full rounded-lg border border-stone-200 bg-white px-4 py-3 text-sm outline-none focus:border-warm-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-500"
+                class="form-input"
                 placeholder="Ceritakan jumlah jendela, jenis ruangan, atau jadwal yang diinginkan"
               ></textarea>
             </div>
@@ -142,7 +101,7 @@ const quickActions = [
           </div>
         </form>
       </div>
-    </section>
+    </PageSection>
 
     <CTA
       title="Ingin konsultasi model, bahan, atau jadwal pengukuran?"
