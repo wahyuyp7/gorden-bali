@@ -1,0 +1,185 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CTA from "../components/CTA.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import ServiceAreaList from "../components/ServiceAreaList.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import { contactNeedOptions, seo, serviceAreas, site, whatsappLink } from "../data/site";
+
+const quickActions = [
+  { label: "Tanya harga", message: "Halo, saya ingin tanya harga gorden custom di Bali." },
+  { label: "Konsultasi bahan", message: "Halo, saya ingin konsultasi pilihan bahan gorden untuk ruangan saya." },
+  { label: "Jadwalkan pengukuran", message: "Halo, saya ingin jadwalkan pengukuran gorden di lokasi saya." },
+  { label: "Tanya area layanan", message: "Halo, saya ingin tanya apakah area saya termasuk cakupan layanan gorden di Bali." },
+];
+---
+
+<BaseLayout title={seo.kontak.title} description={seo.kontak.description}>
+  <main>
+    <section class="border-b border-stone-200/70 bg-gradient-to-b from-cream-100 to-cream-50 py-12 md:py-16">
+      <div class="container-site grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div>
+          <p class="eyebrow">Kontak</p>
+          <h1 class="page-title">Konsultasi gorden custom di Bali via WhatsApp.</h1>
+          <p class="page-lead">
+            Chat langsung untuk konsultasi model, tanya harga, pilih bahan, atau jadwalkan pengukuran ke lokasi.
+          </p>
+          <WhatsAppButton class="mt-8" />
+          <div class="mt-6 flex flex-wrap gap-2">
+            {
+              quickActions.map((action) => (
+                <a
+                  href={whatsappLink(action.message)}
+                  class="trust-pill text-[13px] transition hover:ring-warm-500/25"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {action.label}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <article class="soft-card p-6">
+            <h2 class="text-lg font-bold text-warm-900">WhatsApp</h2>
+            <a href={whatsappLink()} class="mt-3 block text-sm font-bold text-green-700 hover:text-green-800" target="_blank" rel="noopener noreferrer">
+              {site.phoneDisplay}
+            </a>
+          </article>
+          <article class="soft-card p-6">
+            <h2 class="text-lg font-bold text-warm-900">Instagram</h2>
+            <a href={site.instagramUrl} class="mt-3 block text-sm font-bold text-warm-900 hover:text-warm-700" target="_blank" rel="noopener noreferrer">
+              {site.instagram}
+            </a>
+          </article>
+          <article class="soft-card p-6">
+            <h2 class="text-lg font-bold text-warm-900">Jam operasional</h2>
+            <p class="mt-3 text-sm leading-relaxed text-neutral-600">{site.hours}</p>
+          </article>
+          <article class="soft-card p-6">
+            <h2 class="text-lg font-bold text-warm-900">Area layanan</h2>
+            <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+              Denpasar, Badung, Gianyar, Tabanan, Sanur, Canggu, Seminyak, Ubud, Nusa Dua, Jimbaran, dan area Bali lainnya.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space bg-white">
+      <div class="container-site grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div>
+          <SectionHeader
+            eyebrow="Form konsultasi"
+            title="Catat kebutuhan sebelum chat."
+            description="Isi form singkat, lalu klik WhatsApp. Detail kebutuhan otomatis disiapkan di pesan chat."
+          />
+          <div class="mt-8">
+            <ServiceAreaList areas={serviceAreas.slice(0, 8)} />
+          </div>
+        </div>
+
+        <form id="kontak-form" class="soft-card bg-cream-50/50 p-6 md:p-8" novalidate>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div class="block">
+              <label for="kontak-nama" class="text-sm font-bold text-warm-900">Nama</label>
+              <input
+                id="kontak-nama"
+                name="nama"
+                type="text"
+                autocomplete="name"
+                class="mt-2 w-full rounded-lg border border-stone-200 bg-white px-4 py-3 text-sm outline-none focus:border-warm-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-500"
+                placeholder="Nama Anda"
+              />
+            </div>
+            <div class="block">
+              <label for="kontak-lokasi" class="text-sm font-bold text-warm-900">Lokasi</label>
+              <input
+                id="kontak-lokasi"
+                name="lokasi"
+                type="text"
+                autocomplete="address-level2"
+                class="mt-2 w-full rounded-lg border border-stone-200 bg-white px-4 py-3 text-sm outline-none focus:border-warm-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-500"
+                placeholder="Contoh: Canggu"
+              />
+            </div>
+            <div class="block sm:col-span-2">
+              <label for="kontak-kebutuhan" class="text-sm font-bold text-warm-900">Kebutuhan</label>
+              <select
+                id="kontak-kebutuhan"
+                name="kebutuhan"
+                class="mt-2 w-full rounded-lg border border-stone-200 bg-white px-4 py-3 text-sm outline-none focus:border-warm-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-500"
+              >
+                {contactNeedOptions.map((option) => (
+                  <option value={option}>{option}</option>
+                ))}
+              </select>
+            </div>
+            <div class="block sm:col-span-2">
+              <label for="kontak-pesan" class="text-sm font-bold text-warm-900">Pesan</label>
+              <textarea
+                id="kontak-pesan"
+                name="pesan"
+                rows="5"
+                class="mt-2 w-full rounded-lg border border-stone-200 bg-white px-4 py-3 text-sm outline-none focus:border-warm-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-500"
+                placeholder="Ceritakan jumlah jendela, jenis ruangan, atau jadwal yang diinginkan"
+              ></textarea>
+            </div>
+          </div>
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <button id="kontak-wa-btn" type="button" class="btn-wa">
+              <svg class="h-5 w-5 shrink-0" viewBox="0 0 32 32" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M16.02 3.2A12.74 12.74 0 0 0 3.29 15.93c0 2.24.58 4.42 1.69 6.35L3.2 28.8l6.67-1.75a12.69 12.69 0 0 0 6.15 1.57h.01A12.74 12.74 0 0 0 28.8 15.9 12.75 12.75 0 0 0 16.02 3.2Zm.01 23.27h-.01c-1.96 0-3.88-.53-5.56-1.52l-.4-.24-3.95 1.04 1.05-3.85-.26-.4a10.53 10.53 0 0 1-1.61-5.57 10.73 10.73 0 1 1 10.74 10.54Zm5.88-8.03c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.52-.16-.74.16-.22.32-.85 1.05-1.04 1.27-.19.22-.38.24-.7.08-.32-.16-1.36-.5-2.59-1.59-.96-.85-1.61-1.91-1.8-2.23-.19-.32-.02-.5.14-.66.14-.14.32-.38.48-.57.16-.19.22-.32.32-.54.11-.22.05-.4-.03-.57-.08-.16-.74-1.78-1.01-2.44-.27-.64-.54-.55-.74-.56l-.63-.01c-.22 0-.57.08-.87.4-.3.32-1.14 1.11-1.14 2.71 0 1.59 1.17 3.14 1.33 3.35.16.22 2.3 3.51 5.57 4.92.78.34 1.38.54 1.86.69.78.25 1.49.21 2.05.13.62-.09 1.9-.78 2.17-1.53.27-.75.27-1.39.19-1.53-.08-.14-.3-.22-.62-.38Z"
+                />
+              </svg>
+              Lanjut chat WhatsApp
+            </button>
+            <p class="text-xs leading-relaxed text-neutral-500">Data dikirim langsung ke WhatsApp. Tidak disimpan di website.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <CTA
+      title="Ingin konsultasi model, bahan, atau jadwal pengukuran?"
+      description="Hubungi kami via WhatsApp dan ceritakan kebutuhan gorden Anda. Kami siap bantu dari konsultasi awal hingga pemasangan."
+      message="Halo, saya ingin konsultasi model, bahan, dan jadwal pengukuran gorden di Bali."
+    />
+  </main>
+</BaseLayout>
+
+<script define:vars={{ whatsappNumber: site.whatsappNumber }}>
+  const form = document.getElementById("kontak-form");
+  const button = document.getElementById("kontak-wa-btn");
+
+  const buildMessage = () => {
+    const name = document.getElementById("kontak-nama")?.value.trim() ?? "";
+    const need = document.getElementById("kontak-kebutuhan")?.value.trim() ?? "";
+    const location = document.getElementById("kontak-lokasi")?.value.trim() ?? "";
+    const message = document.getElementById("kontak-pesan")?.value.trim() ?? "";
+
+    return [
+      "Halo, saya ingin konsultasi gorden custom di Bali.",
+      `Nama: ${name || "-"}`,
+      `Kebutuhan: ${need || "-"}`,
+      `Lokasi: ${location || "-"}`,
+      `Pesan: ${message || "-"}`,
+    ].join("\n");
+  };
+
+  const openWhatsApp = () => {
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(buildMessage())}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  button?.addEventListener("click", openWhatsApp);
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    openWhatsApp();
+  });
+</script>

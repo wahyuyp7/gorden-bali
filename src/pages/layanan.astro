@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CTA from "../components/CTA.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import ServicesGrid from "../components/ServicesGrid.astro";
+import { seo, services } from "../data/site";
+---
+
+<BaseLayout title={seo.layanan.title} description={seo.layanan.description}>
+  <main>
+    <PageHero
+      eyebrow="Layanan gorden Bali"
+      title="Layanan lengkap untuk rumah, villa, kantor, hotel, dan apartemen."
+      description="Pilih layanan sesuai kebutuhan ruangan. Semua bisa dikonsultasikan — model, bahan, warna, rel, dan jadwal pengukuran."
+      waLabel="Konsultasi layanan"
+      waMessage="Halo, saya ingin konsultasi layanan gorden yang cocok untuk ruangan saya di Bali."
+    />
+
+    <section class="section-space bg-white">
+      <div class="container-site">
+        <SectionHeader
+          eyebrow="Daftar layanan"
+          title="Setiap layanan bisa disesuaikan ukuran dan kebutuhan ruangan."
+          description="Lihat pilihan layanan, lalu gunakan tombol konsultasi untuk tanya model, bahan, estimasi harga, atau jadwal pengukuran."
+        />
+        <div class="mt-10">
+          <ServicesGrid items={services} showImages showCta />
+        </div>
+      </div>
+    </section>
+
+    <CTA
+      title="Belum yakin layanan mana yang cocok?"
+      description="Chat langsung dan ceritakan kondisi ruangan. Kami bantu rekomendasikan gorden, vitrase, roller blind, atau vertical blind yang paling sesuai."
+      message="Halo, saya ingin dibantu memilih layanan gorden yang cocok untuk ruangan saya di Bali."
+    />
+  </main>
+</BaseLayout>

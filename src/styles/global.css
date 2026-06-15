@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@config "../../tailwind.config.mjs";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: Georgia, ui-serif, serif;
+  --color-cream-50: #fcfaf6;
+  --color-cream-100: #f7f1e7;
+  --color-cream-200: #eadfce;
+  --color-warm-500: #b89068;
+  --color-warm-700: #765840;
+  --color-warm-900: #2f2924;
+  --color-whatsapp: #22c55e;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream-50 font-sans text-[15px] leading-relaxed text-neutral-700 antialiased md:text-base;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-serif text-warm-900;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .section-space {
+    @apply py-14 md:py-20 lg:py-24;
+  }
+
+  .eyebrow {
+    @apply mb-3 text-xs font-bold uppercase tracking-[0.18em] text-warm-700;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold leading-[1.15] md:text-4xl;
+  }
+
+  .section-lead {
+    @apply mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg;
+  }
+
+  .page-title {
+    @apply font-serif text-3xl font-bold leading-[1.12] text-warm-900 sm:text-4xl md:text-[2.65rem];
+  }
+
+  .page-lead {
+    @apply mt-5 max-w-2xl text-base leading-relaxed text-neutral-600 md:text-lg;
+  }
+
+  .btn-wa {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-whatsapp px-5 py-3 text-sm font-bold text-white shadow-sm ring-1 ring-green-600/20 transition hover:bg-green-600 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-whatsapp;
+  }
+
+  .btn-wa-light {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-warm-900 shadow-sm transition hover:bg-cream-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white;
+  }
+
+  .btn-outline {
+    @apply inline-flex min-h-12 items-center justify-center rounded-lg border border-warm-700/20 bg-white px-5 py-3 text-sm font-bold text-warm-900 shadow-sm transition hover:border-warm-500/35 hover:bg-cream-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm-500;
+  }
+
+  .soft-card {
+    @apply rounded-xl border border-stone-200/80 bg-white shadow-sm transition duration-300 hover:border-cream-200 hover:shadow-md;
+  }
+
+  .trust-pill {
+    @apply inline-flex items-center gap-2.5 rounded-lg bg-white px-3.5 py-3 text-sm font-bold text-warm-900 shadow-sm ring-1 ring-warm-700/10;
+  }
+
+  .step-badge {
+    @apply flex h-9 w-9 items-center justify-center rounded-full bg-cream-100 text-sm font-bold text-warm-900 ring-1 ring-warm-700/15;
+  }
+}

@@ -1,0 +1,43 @@
+---
+import { gallery } from "../data/site";
+import ResponsiveImage from "./ResponsiveImage.astro";
+
+const {
+  items = gallery,
+  dark = false,
+} = Astro.props;
+---
+
+<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+  {
+    items.map((item) => (
+      <article
+        class:list={[
+          "group overflow-hidden rounded-xl transition duration-300",
+          dark
+            ? "border border-white/10 bg-white/5 hover:border-white/20"
+            : "soft-card hover:shadow-lg",
+        ]}
+      >
+        <div class="overflow-hidden">
+          <ResponsiveImage
+            src={item.image}
+            alt={item.alt}
+            class="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+            width="720"
+            height="540"
+            loading="lazy"
+            decoding="async"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)"
+          />
+        </div>
+        <div class="p-5">
+          <h3 class={dark ? "font-sans text-base font-bold text-white" : "font-sans text-base font-bold text-warm-900"}>
+            {item.title}
+          </h3>
+          <p class={dark ? "mt-1.5 text-sm text-white/65" : "mt-1.5 text-sm text-neutral-600"}>{item.location}</p>
+        </div>
+      </article>
+    ))
+  }
+</div>

@@ -1,0 +1,45 @@
+---
+import ResponsiveImage from "./ResponsiveImage.astro";
+import { services, whatsappLink } from "../data/site";
+
+const {
+  items = services,
+  showImages = false,
+  showCta = false,
+} = Astro.props;
+---
+
+<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+  {
+    items.map((service) => (
+      <article class="soft-card flex min-h-52 flex-col overflow-hidden">
+        {showImages && (
+          <ResponsiveImage
+            src={service.image}
+            alt={`Contoh ${service.title.toLowerCase()} di Bali`}
+            class="aspect-[4/3] w-full object-cover"
+            width="720"
+            height="540"
+            loading="lazy"
+            decoding="async"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2.5rem)"
+          />
+        )}
+        <div class="flex flex-1 flex-col p-6">
+          <h3 class="text-lg font-bold leading-snug">{service.title}</h3>
+          <p class="mt-3 flex-1 text-[15px] leading-relaxed text-neutral-600">{service.description}</p>
+          {showCta && service.ctaLabel && service.ctaMessage && (
+            <a
+              href={whatsappLink(service.ctaMessage)}
+              class="mt-4 inline-flex min-h-10 items-center text-sm font-bold text-green-700 transition hover:text-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {service.ctaLabel} →
+            </a>
+          )}
+        </div>
+      </article>
+    ))
+  }
+</div>

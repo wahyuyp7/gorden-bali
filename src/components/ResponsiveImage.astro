@@ -1,0 +1,43 @@
+---
+const {
+  src,
+  alt,
+  class: className = "",
+  width,
+  height,
+  loading = "lazy",
+  decoding = "async",
+  sizes = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
+  fetchpriority,
+} = Astro.props;
+
+const widths = [480, 768, 1024, 1536];
+const fileName = src?.split("/").pop() ?? "";
+const baseName = fileName.replace(/\.[^.]+$/, "");
+const hasOptimizedVariants = src?.startsWith("/images/") && src?.endsWith(".png") && src !== "/images/logo.png";
+const srcset = (format) =>
+  widths.map((imageWidth) => `/images/optimized/${baseName}-${imageWidth}.${format} ${imageWidth}w`).join(", ");
+
+const imageAttrs = {
+  src,
+  alt,
+  class: className,
+  width,
+  height,
+  loading,
+  decoding,
+  ...(fetchpriority ? { fetchpriority } : {}),
+};
+---
+
+{
+  hasOptimizedVariants ? (
+    <picture>
+      <source type="image/avif" srcset={srcset("avif")} sizes={sizes} />
+      <source type="image/webp" srcset={srcset("webp")} sizes={sizes} />
+      <img {...imageAttrs} />
+    </picture>
+  ) : (
+    <img {...imageAttrs} />
+  )
+}

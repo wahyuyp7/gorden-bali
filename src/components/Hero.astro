@@ -1,0 +1,60 @@
+---
+import WhatsAppButton from "./WhatsAppButton.astro";
+import ResponsiveImage from "./ResponsiveImage.astro";
+import { site } from "../data/site";
+
+const trustBadges = ["Survey ke Lokasi", "Custom Ukuran", "Pemasangan Rapi", "Melayani Bali"];
+---
+
+<section class="overflow-hidden border-b border-stone-200/60 bg-gradient-to-b from-cream-100 via-cream-50 to-cream-50">
+  <div class="container-site grid items-center gap-8 py-10 md:min-h-[calc(100svh-4.5rem)] md:grid-cols-[1.02fr_0.98fr] md:gap-10 md:py-14 lg:gap-14">
+    <div class="max-w-2xl">
+      <p class="eyebrow">Jasa gorden custom di Bali</p>
+      <h1 class="text-4xl font-bold leading-[1.08] tracking-tight text-warm-900 sm:text-5xl lg:text-[3.35rem]">
+        Gorden Custom untuk Rumah, Villa & Properti di Bali
+      </h1>
+      <p class="mt-5 max-w-xl text-base leading-relaxed text-neutral-600 md:text-lg">
+        Konsultasi, ukur, buat, dan pasang gorden sesuai kebutuhan ruangan — dari rumah hingga hotel dan apartemen.
+      </p>
+
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <WhatsAppButton
+          label="Konsultasi via WhatsApp"
+          message="Halo, saya ingin konsultasi gorden custom di Bali untuk rumah/villa/kantor."
+        />
+        <a href="/galeri" class="btn-outline">Lihat hasil kerja</a>
+      </div>
+
+      <ul class="mt-8 grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
+        {
+          trustBadges.map((badge) => (
+            <li class="trust-pill">
+              <span class="h-2 w-2 shrink-0 rounded-full bg-whatsapp" aria-hidden="true"></span>
+              <span class="leading-snug">{badge}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="relative">
+      <div class="overflow-hidden rounded-2xl bg-white p-2 shadow-soft ring-1 ring-stone-200/60">
+        <ResponsiveImage
+          src="/images/hero-gorden.png"
+          alt="Interior rumah dengan gorden custom elegan di Bali"
+          class="aspect-[4/3] w-full rounded-xl object-cover sm:aspect-[5/4] md:aspect-[4/5]"
+          width="900"
+          height="1125"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          sizes="(min-width: 1024px) 42vw, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
+        />
+      </div>
+      <div class="absolute bottom-4 left-4 max-w-[260px] rounded-xl border border-stone-200/80 bg-white/95 p-4 shadow-lg backdrop-blur-sm">
+        <p class="text-sm font-bold text-warm-900">Survey & pasang di lokasi</p>
+        <p class="mt-1 text-sm text-neutral-600">{site.hours}</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+---
+import WhatsAppButton from "./WhatsAppButton.astro";
+
+const {
+  eyebrow,
+  title,
+  description,
+  tone = "light",
+  narrow = true,
+  waLabel,
+  waMessage,
+  class: className = "",
+} = Astro.props;
+
+const isDark = tone === "dark";
+---
+
+<section
+  class:list={[
+    isDark ? "bg-warm-900 text-white" : "border-b border-stone-200/70 bg-gradient-to-b from-cream-100 to-cream-50",
+    "py-12 md:py-16",
+    className,
+  ]}
+>
+  <div class:list={["container-site", narrow && "max-w-4xl"]}>
+    {eyebrow && <p class={isDark ? "mb-3 text-xs font-bold uppercase tracking-[0.18em] text-cream-200" : "eyebrow"}>{eyebrow}</p>}
+    <h1 class:list={["page-title", isDark && "text-white"]}>{title}</h1>
+    {description && <p class:list={["page-lead", isDark && "text-cream-100/90"]}>{description}</p>}
+    {waLabel && waMessage && <WhatsAppButton label={waLabel} message={waMessage} class="mt-8" />}
+    <slot />
+  </div>
+</section>

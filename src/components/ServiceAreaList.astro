@@ -1,0 +1,16 @@
+---
+import { serviceAreas } from "../data/site";
+
+const { areas = serviceAreas } = Astro.props;
+---
+
+<ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+  {
+    areas.map((area) => (
+      <li class="trust-pill justify-center text-center text-[15px]">
+        <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-warm-500" aria-hidden="true"></span>
+        {area}
+      </li>
+    ))
+  }
+</ul>

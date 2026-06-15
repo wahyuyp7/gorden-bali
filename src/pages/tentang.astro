@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CTA from "../components/CTA.astro";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import { benefits, seo, whyChooseUs } from "../data/site";
+---
+
+<BaseLayout title={seo.tentang.title} description={seo.tentang.description}>
+  <main>
+    <section class="border-b border-stone-200/70 bg-gradient-to-b from-cream-100 to-cream-50 py-12 md:py-16">
+      <div class="container-site grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <div>
+          <p class="eyebrow">Tentang kami</p>
+          <h1 class="page-title">Membantu kebutuhan gorden custom untuk hunian dan properti di Bali.</h1>
+          <p class="page-lead">
+            Aruma Gorden Bali melayani konsultasi, pengukuran, pembuatan, dan pemasangan gorden untuk rumah, villa, kantor, hotel, dan apartemen. Fokus kami: gorden yang sesuai fungsi ruangan dan terlihat rapi.
+          </p>
+          <WhatsAppButton message="Halo, saya ingin konsultasi dengan Aruma Gorden Bali." class="mt-8" />
+        </div>
+        <div class="overflow-hidden rounded-2xl bg-white p-2 shadow-soft ring-1 ring-stone-200/60">
+          <ResponsiveImage
+            src="/images/hero-gorden.png"
+            alt="Gorden custom untuk interior rumah dan villa di Bali"
+            class="aspect-[4/3] w-full rounded-xl object-cover"
+            width="900"
+            height="675"
+            loading="eager"
+            sizes="(min-width: 1024px) 43vw, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space bg-white">
+      <div class="container-site grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <SectionHeader
+          eyebrow="Cara kerja"
+          title="Tidak sekadar jual gorden — kami bantu pilih solusi yang cocok."
+          description="Setiap ruangan punya kebutuhan berbeda: blackout untuk tidur nyaman, vitrase agar cahaya lembut, atau blind praktis untuk kantor dan apartemen."
+        />
+        <div class="grid gap-4 sm:grid-cols-2">
+          {
+            benefits.map((item) => (
+              <article class="soft-card p-6">
+                <h2 class="text-lg font-bold leading-snug">{item.title}</h2>
+                <p class="mt-3 text-[15px] leading-relaxed text-neutral-600">{item.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section-space bg-cream-50">
+      <div class="container-site grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
+        <div>
+          <p class="eyebrow">Komitmen kualitas</p>
+          <h2 class="section-title">Hasil rapi dimulai dari ukuran dan bahan yang tepat.</h2>
+          <p class="section-lead">
+            Kami menjaga proses agar Anda mudah memahami pilihan yang tersedia. Dari konsultasi awal sampai pemasangan, setiap keputusan menyesuaikan kondisi ruangan, fungsi, dan gaya interior.
+          </p>
+        </div>
+        <ul class="grid gap-3">
+          {
+            whyChooseUs.map((item) => (
+              <li class="soft-card flex items-start gap-3 p-5 text-[15px] font-semibold leading-relaxed text-neutral-700">
+                <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-warm-500" aria-hidden="true"></span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <CTA
+      title="Mau diskusi kebutuhan gorden untuk ruangan Anda?"
+      description="Kirim foto ruangan dan lokasi. Kami bantu arahkan pilihan bahan, model, dan jadwal survey."
+      message="Halo, saya ingin diskusi kebutuhan gorden custom di Bali."
+    />
+  </main>
+</BaseLayout>
